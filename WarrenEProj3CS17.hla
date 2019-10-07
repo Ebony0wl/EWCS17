@@ -1,0 +1,68 @@
+// Ebony Warren
+// Project 3: Finding Total
+// CS 17
+// April 8, 2018
+
+program MaxMin;
+
+#include( "stdlib.hhf" )
+	
+static
+	num: int32;
+	max: int32;
+	min: int32;
+	total: int32 :=0 ;
+	c: int32:=0;
+
+begin MaxMin;
+
+stdout.put( "Ebony Warren - Project 3", nl);
+
+
+	//initialize first number
+	stdout.put( "Enter a poistive number, 0 to stop: ");
+	stdin.get(num);
+	mov(num, eax); //so we can compare them later
+	mov(num, ebx);
+	mov(num, total);
+
+	//loop
+	while (num != 0) do 
+		stdout.put( "Enter a poistive number, 0 to stop: ");
+		stdin.get(num);
+
+		//reuse register
+		push(eax);
+			mov(num, eax);
+			add(eax, total);
+		pop(eax);
+
+		add(1, c);
+
+		//test for max
+		if (num > eax) then
+			mov(num, eax);
+
+		//test for min, exclude 0 as a min
+		elseif (num < ebx && num !=0) then
+			mov(num, ebx);
+
+		else
+
+		endif;
+
+	endwhile;
+
+		//move register values 
+		mov(eax, max);
+		mov(ebx, min);
+
+		//answer
+		stdout.put( "Total: ",total ,nl);
+		stdout.put( "Count: ", c ,nl);
+		stdout.put( "Max: ", max ,nl);
+		stdout.put( "Min: ", min ,nl);
+
+stdout.put( "Ebony Warren - End of Project 3", nl);
+
+end MaxMin;

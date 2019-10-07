@@ -1,0 +1,16 @@
+// Ebony Warren
+// Project 1: Introductory
+//CS 17
+// March 18, 2018
+
+program NumsInColumns;
+	#include( "stdlib.hhf" )
+	
+ 
+begin NumsInColumns;
+
+MOV (0, EAX);
+MOV (100, AL);
+MOV (1, AH);
+ 
+end NumsInColumns;

@@ -1,0 +1,34 @@
+// Ebony Warren
+// Project 1: Introductory
+//CS 17
+// March 18, 2018
+
+program NumsInColumns;
+	#include( "stdlib.hhf" )
+	var i32: int32;
+ 	ColCnt: int8;
+ 
+begin NumsInColumns;
+
+stdout.put( "Ebony Warren - Project 1: Introductory")
+stdout.newln();
+//Initialize
+ 	mov( 1, i32 );
+ 	mov( 0, ColCnt );
+ 	//count to 96
+ 	while( i32 < 97 ) do
+ 	
+ 		if( ColCnt = 8 ) then // how many numbers per line
+ 			stdout.newln();
+ 			mov( 0, ColCnt );
+	 	endif;
+	 	
+ 		stdout.puti32Size( i32, 5, ' ' ); //sizing
+ 		add( 1, i32 ); // counting by 1s
+ 		add( 1, ColCnt );
+ 	endwhile;
+ 	
+ 	stdout.newln();
+ stdout.put( "Ebony Warren - Project 1: Introductory" nl)
+ 
+end NumsInColumns;

@@ -1,0 +1,84 @@
+// Ebony Warren
+// Project 6: Pure Assembley
+// CS 17
+// May 20, 2018
+
+program Proj6;
+
+#include( "stdlib.hhf" )
+
+const
+    NumElements := 18;
+static
+    lastIndex: uns32 := NumElements - 1;
+    maxIndex: uns32;
+    dataToSort: uns32[NumElements] := [85, 35, 18, 89, 57, 45, 50, 49, 36, 30, 46, 28, 63, 79, 81, 84, 42, 62];
+
+begin Proj6;
+    stdout.put( "Ebony Warren - Project 6: Pure Assembley", nl, nl );
+    stdout.put( "Selection Sort, Number of Array Elements: ", NumElements, nl);
+    stdout.put( "Original Array Elements:", nl);
+
+    // Print original array
+
+                mov(0, EBX); 
+    LblData:
+                cmp(EBX, NumElements);
+                jnl LblSorting;
+                stdout.puti32Size( dataToSort[EBX * 4], 4, ' ' );
+                inc(EBX);
+                jmp LblData;
+   
+    LblSorting:
+                stdout.newln(); stdout.newln();
+                stdout.put( "Sorting...", nl );
+
+    LblLoop:
+                stdout.newln();
+                cmp(lastIndex, 0);
+                jng LblEnd;
+
+                    // Assume 1st element is max, store in EAX
+
+                mov( dataToSort[0], EAX );
+                mov( 0, maxIndex );
+
+                     // Go through array looking for max
+
+                mov(1, EBX); 
+    LblMax:
+                cmp(EBX, lastIndex);
+                jnle LblRearrange;
+    LblCompare:
+                cmp(dataToSort[EBX * 4], EAX);
+                    jng Lblinc;
+                    mov( dataToSort[EBX * 4], EAX );
+                    mov( EBX, maxIndex );
+                    jmp LblCompare;
+    Lblinc:
+                inc(EBX);
+                jmp LblMax;
+
+    LblRearrange:
+               dec(EBX); // Back EBX up to point at last inspected element
+
+                    // Swap max and last
+                mov( dataToSort[EBX * 4], ECX ); // Temp storage of last inspected element
+                mov( EAX, dataToSort[EBX * 4] ); // Store max over last inspected element
+                mov( maxIndex, EDX );
+                mov( ECX, dataToSort[EDX * 4] ); // Store last element where max was
+                dec( lastIndex ); // Redefine the right-most element
+
+                    // Print the new array
+
+                mov(0, EBX);
+    LblOutput:
+                cmp(EBX, NumElements);
+                jnl LblLoop;
+                stdout.puti32Size( dataToSort[EBX * 4], 4, ' ' );
+                inc(EBX);
+                jmp LblOutput;
+
+    LblEnd:
+                stdout.put(nl, nl, "Ebony Warren - Project 6: Pure Assembley" );
+end Proj6;

@@ -1,0 +1,7 @@
+program HelloWorld;
+#include( "stdlib.hhf" )
+begin HelloWorld;
+MOV (5, AL);
+MOV (0, AH);
+stdout.put( AX, nl );
+end HelloWorld;

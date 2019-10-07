@@ -1,0 +1,76 @@
+// Ebony Warren
+// Project 4: Heap Memory
+// CS 17
+// April 29, 2018
+
+program HeapMem;
+
+#include( "stdlib.hhf" )
+	
+static
+	memp: pointer to byte;
+
+	num: uns32;
+
+	ColCnt: int8;
+
+begin HeapMem;
+
+stdout.put( "Ebony Warren - Project 4: Heap Memory", nl);
+stdout.newln();
+
+	mem.alloc (1000);
+	mov(eax, memp);
+
+	push (eax);
+
+	stdout.put( "Enter a poistive number, 0 to stop: ");
+	stdin.get(num);
+
+	mov( num, (type uns32 [eax]));
+
+	add (4, eax);
+
+	//loop
+	while (num != 0) do 
+
+		stdout.put( "Enter a poistive number, 0 to stop: ");
+		stdin.get(num);
+
+		//memp = memp + @size(num)
+
+		mov( num, (type uns32 [eax]));
+
+		add (4, eax);
+
+	endwhile;
+
+	sub(4, eax);
+	mov(eax, memp);
+
+	pop(eax);
+
+
+	while (eax < memp) do
+
+		stdout.puti32Size( (type uns32[eax]), 3, ' ' );
+
+		add(4, eax);
+		add(1, ColCnt);
+
+		if( ColCnt = 14 ) then // how many numbers per line
+ 			stdout.newln();
+ 			mov( 0, ColCnt );
+	 	endif;
+		
+
+	endwhile;
+		
+
+	//mov(memp, eax);
+	//mem.free(eax);
+
+stdout.newln();
+stdout.put( nl, "Ebony Warren - Project 4: Heap Memory", nl);
+
+end HeapMem;

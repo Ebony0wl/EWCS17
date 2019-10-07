@@ -1,0 +1,38 @@
+// Ebony Warren
+// Project 1: Introductory
+//CS 17
+// March 18, 2018
+
+program NumsInColumns;
+	#include( "stdlib.hhf" )
+
+static X: int8 := 5;
+         Y: int8 := 8;
+	
+ 
+begin NumsInColumns;
+
+MOV (16, AL);
+MUL (X);
+stdout.newln();
+stdout.puti16(AX);
+
+DIV (Y);       // Assume the registers have their previous values, before this part.
+stdout.newln();
+stdout.puti8(AL);
+stdout.newln();
+
+MOV (120, AX);
+MOV (6, BX);
+MUL (BX);
+stdout.puti32(DX:AX);
+
+stdout.newln(); 
+stdout.puti16(DX);
+
+
+stdout.newln();
+stdout.puti16(AX); 
+
+ 
+end NumsInColumns;

@@ -1,0 +1,78 @@
+// Ebony Warren
+// Project 5: Arrays
+// CS 17
+// May 6, 2018
+
+program Proj5;
+
+#include( "stdlib.hhf" )
+
+const
+	
+	NumElements := 10;
+
+static
+
+	DataOfNum: uns32 [NumElements] := [ 18, 33, 13, 14, 17, 25, 20, 76, 22, 65 ];	
+	index: uns32;
+	temp: int32;
+
+begin Proj5;
+
+	stdout.put( "Ebony Warren - Project 5: Arrays", nl);
+	stdout.newln();
+
+		//print array
+		stdout.put( "Number of array elements: ", DataOfNum, nl);
+		stdout.put( "array elements: ");
+
+			for (mov(0,ebx); ebx < NumElements; inc(ebx)) do
+				stdout.puti32Size( DataOfNum[ebx * 4], 4, ' ');
+			endfor;
+			stdout.newln();
+
+		mov(NumElements - 1, edx); //edx=lastindex, ebx is also 1 less then NumElements
+
+		//loop till sorted
+		while (edx >  0) do
+			mov(DataOfNum[edx * 4], temp);
+
+			mov(0,eax); //eax is current max index
+
+
+			mov(DataOfNum[0], eax);
+
+
+			for (mov(0,ebx); ebx <= edx; inc(ebx)) do
+
+				mov(DataOfNum[ebx * 4], esi);
+
+				if (eax < esi) then
+					
+					mov(esi, DataOfNum[edx * 4]);
+					mov(ebx, index);
+					mov(esi, eax);
+				endif;
+
+			endfor;
+
+			mov(index, ecx);
+
+			mov(temp, DataOfNum[ecx * 4]);
+
+			dec(edx);
+
+			for (mov(0,ebx); ebx < NumElements; inc(ebx)) do
+				stdout.puti32Size( DataOfNum[ebx * 4], 4, ' ');
+			endfor;
+
+			stdout.newln();
+		endwhile;
+
+
+
+
+	stdout.newln();
+	stdout.put( nl, "Ebony Warren - Project 5: Arrays", nl);
+
+end Proj5;

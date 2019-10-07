@@ -1,0 +1,70 @@
+// Ebony Warren
+// Project 2: Date Demo
+// CS 17
+// April 1, 2018
+
+program dateDemo;
+
+#include( "stdlib.hhf" )
+	
+static
+	day: uns8;
+	month: uns8;
+	year: uns16;
+
+ 	packedDate: dword;
+
+begin dateDemo;
+
+stdout.put( "Ebony Warren - Project 2: Date Demo", nl);
+
+	stdout.put( "Enter your birthdate (full year, month, day): " );
+	stdin.get( year, month, day );
+
+	 // Pack the data into the following bits into regster eax
+
+	 mov( 0, eax );
+	 mov( eax, packedDate ); // Just in case there is an error.
+
+	 if( month > 12 || month = 0 ) then
+
+	 	stdout.put( "Month value must be in the range 1..12", nl );
+
+	 elseif( day > 31 || day = 0 ) then
+
+	 	stdout.put( "Day value must be in the range 1..31", nl );
+
+	 elseif( year > 9999 ) then
+
+	 	stdout.put( "Year value must be in the range 0-9999", nl );
+
+	 else
+
+		 mov( year, ax ); //move year into 16 bit reg
+		 shl( 8, eax ); // make room for day
+		 or( month, al ); // might not be nessary but need to put month into 8 bit reg, and not overwright  data
+		 shl( 8, eax ); //make room for day
+		 or( day, al ); // again could use a mov but just in case 
+		 mov( eax, packedDate ); // hex date
+
+	endif;
+
+	 // Okay, display the packed value:
+
+	 stdout.put( "Packed data = $", packedDate, nl );
+
+	 // Unpack the date:
+	 mov( packedDate, eax );
+	 and( $ff, al ); // Retrieve the day value, everything in al should be the date, so just use $ff
+	 mov( al, day );
+
+	 shr( 8, eax );
+	 mov( al, month );
+
+	 shr( 8, eax );
+	 mov( ax, year );
+	 stdout.put( "The date is (day/month/year) ", day, "/", month, "/", year, nl ); 
+
+	 stdout.put( "Ebony Warren - Project 2: Date Demo", nl);
+
+end dateDemo;

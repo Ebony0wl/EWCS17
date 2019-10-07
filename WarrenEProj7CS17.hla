@@ -1,0 +1,68 @@
+// Pure Assembley
+// Ebony Warren
+// Project 7: Fibonacci Numbers
+// CS 17
+// May 27, 2018
+
+program Proj7;
+
+#include( "stdlib.hhf" )
+
+var
+    num : int32;
+    fib0: int32;
+
+begin Proj7;
+            stdout.put(nl, "Ebony Warren - Project 6: Fibonacci Numbers", nl);
+
+    GetNum:
+            mov(0,fib0);
+            mov(1,ecx);
+
+            stdout.put( nl, "Enter a positive number up to 25, (0 to stop): ");
+            stdin.get(num);
+
+            mov(num,eax);
+            cmp(num, 0);
+            je endP;
+            jl error; //test for negative numbers
+
+            //test for over 25
+            cmp(num, 25);
+            jg error;
+
+
+            mov(2,ebx); //ebx is counter
+    loopfib:   
+            cmp(ebx,num);
+
+            jnle output;
+
+            mov(fib0, eax);  //eax is temp
+
+
+            mov(ecx, fib0); //ecx is fib1
+
+
+            add(eax, ecx);
+
+
+            inc(ebx); //inc counter
+            jmp loopfib;
+
+    output:
+            stdout.put( "Fibonacci of ", num, " is "); //display
+            stdout.puti32(ecx);
+            stdout.newln();
+
+            jmp GetNum;//repeat loop
+
+    error: 
+            //error message
+            stdout.put( "Error: ", nl,"Please enter a number between 1 and 25 (0 to stop).");
+            jmp GetNum;
+
+    endP:
+
+            stdout.put(nl, "Ebony Warren - Project 6: Fibonacci Numbers", nl, nl );
+end Proj7;
